@@ -6,7 +6,51 @@
 
     <groupId>com.wimm</groupId>
     <artifactId>costcontrol</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <hibernate.version>5.2.2.Final</hibernate.version>
+        <junit.version>4.12</junit.version>
+        <maven.version>3.0.0</maven.version>
+        <mysql.connector.version>5.1.39</mysql.connector.version> <!-- version 6.0.4 had a bug: http://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue -->
+        <tomcat.version>2.2</tomcat.version>
+    </properties>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat.version}</version>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
