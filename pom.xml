@@ -6,22 +6,30 @@
 
     <groupId>com.wimm</groupId>
     <artifactId>costcontrol</artifactId>
-    <packaging>war</packaging>
+    <!-- <packaging>war</packaging> -->
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <hibernate.version>5.2.2.Final</hibernate.version>
-        <junit.version>4.12</junit.version>
         <maven.version>3.0.0</maven.version>
-        <mysql.connector.version>5.1.39</mysql.connector.version> <!-- version 6.0.4 had a bug: http://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue -->
         <tomcat.version>2.2</tomcat.version>
+        <hibernate.version>5.2.2.Final</hibernate.version>
+        <mysql.connector.version>5.1.39</mysql.connector.version> <!-- version 6.0.4 had a bug: http://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue -->
+        <spring.boot.version>1.4.1.RELEASE</spring.boot.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
-
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven.version}</version>
@@ -30,10 +38,35 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${tomcat.version}</version>
+            </plugin> -->
+            <!-- Package as an executable jar. Do I need it? -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -46,6 +79,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
