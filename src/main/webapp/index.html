@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+        <!-- Angular Material CSS now available via Google CDN; version 0.9.4 used here -->
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+
+    </head>
+
+    <body ng-app="CostControl" ng-cloak>
+
+        <div ng-app="">
+            <p>Input something in the input box:</p>
+            <p>Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
+            <h1>Hello {{name}}</h1>
+        </div>
+
+        <!-- Your application bootstrap  -->
+        <script type="text/javascript">
+            /**
+             * You must include the dependency on 'ngMaterial'
+             */
+            angular.module('CostControl', ['ngMaterial']);
+        </script>
+
+    </body>
+</html>
