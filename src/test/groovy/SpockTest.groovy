@@ -4,7 +4,7 @@ import com.wimm.model.Account
 import spock.lang.Specification
 
 class SpockTest extends Specification {
-  def "length of Spock's and his friends' names"() {
+  def "result of credit or debit transactions"() {
     expect:
     account.doTransaction(value) == newBalance
 
